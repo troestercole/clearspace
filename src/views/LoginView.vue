@@ -24,12 +24,12 @@ const handleGoogleLogin = async () => {
     <!-- Login Card -->
     <div class="relative z-10 w-full max-w-md">
       <div
-        class="backdrop-blur-xl bg-white/80 shadow-2xl rounded-3xl p-8 md:p-10 border border-white/20"
+        class="backdrop-blur-xl bg-white/80 shadow-2xl rounded-3xl p-8 md:p-10 border border-white/20 mb-16"
       >
         <!-- Logo/Title Section -->
         <div class="text-center mb-8">
           <div
-            class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-clearspace-primary to-clearspace-accent rounded-2xl mb-4 shadow-lg"
+            class="inline-flex items-center justify-center w-16 h-16 bg-clearspace-primary rounded-2xl mb-4 shadow-lg"
           >
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -56,7 +56,7 @@ const handleGoogleLogin = async () => {
         <button
           @click="handleGoogleLogin"
           :disabled="authStore.loading"
-          class="w-full group relative flex items-center justify-center gap-3 px-6 py-4 mb-6 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 transition-all duration-200 hover:border-clearspace-primary hover:shadow-lg hover:shadow-clearspace-primary/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          class="w-full group relative flex items-center justify-center gap-3 px-6 py-4 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 transition-all duration-200 hover:border-clearspace-primary hover:shadow-lg hover:shadow-clearspace-primary/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         >
           <!-- Google Icon -->
           <svg v-if="!authStore.loading" class="w-5 h-5" viewBox="0 0 24 24">

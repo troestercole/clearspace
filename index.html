@@ -1,29 +1,56 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="ClearSpace">
+    <meta name="description" content="Your workspace is just one click away">
+    <meta name="theme-color" content="#5A716A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ClearSpace">
+
+    <!-- iOS Splash Screens -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
+
     <style>
       @import "tailwindcss";
 
       @theme {
         --color-clearspace-white: #fdfaf1;
-        --color-clearspace-primary: #6366f1;
-        --color-clearspace-primary-dark: #4f46e5;
-        --color-clearspace-accent: #8b5cf6;
+        --color-clearspace-primary: #5A716A;
+        --color-clearspace-primary-dark: #455a52;
+        --color-clearspace-accent: #C2847A;
         --font-google-sans-flex: 'Google Sans Flex', system-ui, sans-serif;
       }
 
       body {
         background-color: var(--color-clearspace-white);
         font-family: var(--font-google-sans-flex);
+        /* Prevent iOS bounce scrolling */
+        overscroll-behavior: none;
+        /* Safe area for notched devices */
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+
+      /* Prevent text selection on iOS */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
       }
     </style>
-    <title>Vite App</title>
+    <title>ClearSpace</title>
   </head>
 <body>
   <div id="app"></div>
