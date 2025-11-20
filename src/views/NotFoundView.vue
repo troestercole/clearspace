@@ -1,7 +1,9 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useIpad } from '@/composables/useIpad'
 
+const { isIpad } = useIpad()
 const router = useRouter()
 const easterEggActive = ref(false)
 const konamiCode = ref([])
@@ -53,6 +55,12 @@ const activateEasterEgg = async () => {
 
   await delay(2000)
   easterEggActive.value = false
+}
+
+const clickedHint = () => {
+  if (isIpad.value) {
+    activateEasterEgg()
+  }
 }
 
 onMounted(() => {
@@ -170,7 +178,10 @@ onUnmounted(() => {
         <div class="mt-6 text-center">
           <p class="text-xs text-gray-400 font-mono">
             <!-- Hint: Try the classic cheat code -->
-            <span class="opacity-0 hover:opacity-100 transition-opacity duration-300"
+            <span
+              @click="clickedHint"
+              class="opacity-0 hover:opacity-100 transition-opacity duration-300"
+              :class="{ 'ipad-hint': isIpad }"
               >↑ ↑ ↓ ↓ ← → ← → B A</span
             >
           </p>
@@ -195,6 +206,20 @@ img.hadouken {
   transform: translateY(-75%) translateX(-100%);
   left: 50%;
   animation: hadouken-animation 1s linear forwards;
+}
+
+.ipad-hint {
+  animation: ipad-hint-animation 1s linear forwards;
+  animation-delay: 5s;
+}
+
+@keyframes ipad-hint-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes hadouken-animation {
