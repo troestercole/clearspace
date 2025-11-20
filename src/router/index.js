@@ -3,9 +3,14 @@ import { useAuthStore } from '@/stores/authStore'
 
 // Import views
 import LoginView from '@/views/LoginView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 // Define routes
-const routes = [{ path: '/login', component: LoginView, meta: { requiresAuth: false } }]
+const routes = [
+  { path: '/login', component: LoginView, meta: { requiresAuth: false } },
+  // Catch-all route for 404 - must be last
+  { path: '/:pathMatch(.*)*', component: NotFoundView, meta: { requiresAuth: false } },
+]
 
 // Create router
 const router = createRouter({
