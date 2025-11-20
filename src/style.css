@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-clearspace-white: #fdfaf1;
+  --color-clearspace-primary: #5a716a;
+  --color-clearspace-primary-dark: #455a52;
+  --color-clearspace-accent: #c2847a;
+  --font-google-sans-flex: 'Google Sans Flex', system-ui, sans-serif;
+}
+
+body,
+html {
+  overscroll-behavior: none;
+}
+
+body {
+  background-color: var(--color-clearspace-white);
+  font-family: var(--font-google-sans-flex);
+  /* Prevent iOS bounce scrolling */
+  overscroll-behavior: none;
+  /* Safe area for notched devices */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+/* Prevent text selection on iOS */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}

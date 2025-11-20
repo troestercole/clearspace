@@ -4,11 +4,12 @@ import { useAuthStore } from '@/stores/authStore'
 // Import views
 import LoginView from '@/views/LoginView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import BoardView from '@/views/BoardView.vue'
 
 // Define routes
 const routes = [
   { path: '/login', component: LoginView, meta: { requiresAuth: false } },
-  // Catch-all route for 404 - must be last
+  { path: '/', component: BoardView, meta: { requiresAuth: true } },
   { path: '/:pathMatch(.*)*', component: NotFoundView, meta: { requiresAuth: false } },
 ]
 
@@ -19,11 +20,13 @@ const router = createRouter({
 })
 
 // Middleware to check if user is authenticated
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
+  await authStore.waitForAuth()
+
   if (to.meta.requiresAuth && !authStore.user) {
-    next({ name: 'Login' })
-  } else if (to.path == '/login' && authStore.user) {
+    next({ path: '/login' })
+  } else if (to.path === '/login' && authStore.user) {
     next('/')
   } else {
     next()

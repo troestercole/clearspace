@@ -6,12 +6,38 @@ import { auth } from '@/firebase'
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
   const loading = ref(true)
+  let authReadyPromise = null
+  let authReadyResolver = null
 
   function initializeAuth() {
-    onAuthStateChanged(auth, (currentUser) => {
-      user.value = currentUser
-      loading.value = false
+    if (authReadyPromise) {
+      return authReadyPromise
+    }
+
+    authReadyPromise = new Promise((resolve) => {
+      authReadyResolver = resolve
+
+      onAuthStateChanged(auth, (currentUser) => {
+        user.value = currentUser
+        loading.value = false
+        if (authReadyResolver) {
+          authReadyResolver()
+          authReadyResolver = null
+        }
+      })
     })
+
+    return authReadyPromise
+  }
+
+  function waitForAuth() {
+    if (!loading.value) {
+      return Promise.resolve()
+    }
+    if (authReadyPromise) {
+      return authReadyPromise
+    }
+    return initializeAuth()
   }
 
   async function login() {
@@ -43,6 +69,7 @@ export const useAuthStore = defineStore('auth', () => {
     user,
     loading,
     initializeAuth,
+    waitForAuth,
     login,
     logout,
   }
