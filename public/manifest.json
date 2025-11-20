@@ -1,0 +1,25 @@
+{
+  "name": "ClearSpace",
+  "short_name": "ClearSpace",
+  "description": "Your workspace is just one click away",
+  "theme_color": "#5A716A",
+  "background_color": "#fdfaf1",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
